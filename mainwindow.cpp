@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <Windows.h>
+#include <QTimer>
 
 #pragma comment(lib, "user32.lib")
 
@@ -11,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowStaysOnTopHint);
+    QObject::connect(&qTimer,SIGNAL(timeout()),&changedWindows,SLOT(updateHwndTitle()));
+    qTimer.start(2000);
+    changedWindows.moveToThread(&thread);
+    thread.start();
+
 }
 
 MainWindow::~MainWindow()
@@ -59,4 +65,5 @@ void MainWindow::changeWindowTitle() {
     int hwndInt = ui->lineEdit_2->text().toInt(&ok,16);
     hwnd = (HWND)hwndInt;
     SetWindowText(hwnd,windowText);
+    this->changedWindows.setHwndTitle(hwnd,ui->lineEdit->text());
 }

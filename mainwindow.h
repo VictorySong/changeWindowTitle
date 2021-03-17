@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QMouseEvent>
+#include "changedwindows.h"
+#include <QTimer>
+#include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,5 +28,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     HWND hwnd;
+    ChangedWindows changedWindows;
+    QTimer qTimer;
+    QThread thread;
 };
 #endif // MAINWINDOW_H
