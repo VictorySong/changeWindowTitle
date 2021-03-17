@@ -6,6 +6,8 @@
 #include "changedwindows.h"
 #include <QTimer>
 #include <QThread>
+#include <QSystemTrayIcon>
+#include <QIcon>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,5 +33,6 @@ private:
     ChangedWindows changedWindows;
     QTimer qTimer;
     QThread thread;
+    QSystemTrayIcon *trayIcon;
 };
 #endif // MAINWINDOW_H

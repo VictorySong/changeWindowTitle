@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <QTimer>
 
+
 #pragma comment(lib, "user32.lib")
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowFlags(Qt::WindowStaysOnTopHint);
     this->setWindowTitle("更改窗口标题小工具");
     ui->label->setWordWrap(true);
+
+    QIcon icon(":/main.ico");
+    this->setWindowIcon(icon);
+
     QObject::connect(&qTimer,SIGNAL(timeout()),&changedWindows,SLOT(updateHwndTitle()));
     qTimer.start(2000);
     changedWindows.moveToThread(&thread);
