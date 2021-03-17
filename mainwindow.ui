@@ -6,41 +6,78 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>443</height>
+    <width>372</width>
+    <height>340</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="netcard">
+   <layout class="QVBoxLayout" name="netcard" stretch="1,0,0,0">
     <item>
      <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>100</height>
+       </size>
+      </property>
       <property name="text">
-       <string/>
+       <string>点击此处，拖动鼠标至需要更改标题的窗口后松开，即可修改窗口标题。因部分窗口会刷新标题，所以程序设置每两秒自动更新一次。</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
-     </widget>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>窗口句柄:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>窗口标题:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
@@ -51,7 +88,7 @@
        </size>
       </property>
       <property name="text">
-       <string>确认更改</string>
+       <string>确认更改(/回车)</string>
       </property>
      </widget>
     </item>
@@ -62,7 +99,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>426</width>
+     <width>372</width>
      <height>26</height>
     </rect>
    </property>

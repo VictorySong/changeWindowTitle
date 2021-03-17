@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowStaysOnTopHint);
+    this->setWindowTitle("更改窗口标题小工具");
+    ui->label->setWordWrap(true);
     QObject::connect(&qTimer,SIGNAL(timeout()),&changedWindows,SLOT(updateHwndTitle()));
     qTimer.start(2000);
     changedWindows.moveToThread(&thread);
@@ -37,10 +39,11 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
 
         }else {
             ui->lineEdit_2->setText(QString("%1").arg((int)hwnd,8,16,QLatin1Char('0')));
-            ui->label->setText(QString("%1").arg((int)hwnd,8,16,QLatin1Char('0')));
+//            ui->label->setText(QString("%1").arg((int)hwnd,8,16,QLatin1Char('0')));
             TCHAR windowText[MAX_PATH];
             GetWindowText(hwnd,windowText,MAX_PATH);
             ui->lineEdit->setText(QString::fromWCharArray(windowText));
+            ui->lineEdit->setFocus();
         }
     }
 }
