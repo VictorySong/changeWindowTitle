@@ -20,6 +20,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void changeWindowTitle();
 
 private:
     Ui::MainWindow *ui;

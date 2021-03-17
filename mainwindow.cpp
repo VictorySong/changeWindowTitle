@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +30,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
         if (hwnd == NULL || hwnd == INVALID_HANDLE_VALUE){
 
         }else {
+            ui->lineEdit_2->setText(QString("%1").arg((int)hwnd,8,16,QLatin1Char('0')));
             ui->label->setText(QString("%1").arg((int)hwnd,8,16,QLatin1Char('0')));
             TCHAR windowText[MAX_PATH];
             GetWindowText(hwnd,windowText,MAX_PATH);
@@ -40,17 +42,21 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
 
 void MainWindow::on_pushButton_clicked()
 {
-    TCHAR windowText[MAX_PATH];
-    int count = ui->lineEdit->text().toWCharArray(windowText);
-    windowText[count] = 0;
-    SetWindowText(hwnd,windowText);
+    changeWindowTitle();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if(event->key() == Qt::Key_Return) {
-        TCHAR windowText[MAX_PATH];
-        int count = ui->lineEdit->text().toWCharArray(windowText);
-        windowText[count] = 0;
-        SetWindowText(hwnd,windowText);
+        changeWindowTitle();
     }
+}
+
+void MainWindow::changeWindowTitle() {
+    TCHAR windowText[MAX_PATH];
+    int count = ui->lineEdit->text().toWCharArray(windowText);
+    windowText[count] = 0;
+    bool ok;
+    int hwndInt = ui->lineEdit_2->text().toInt(&ok,16);
+    hwnd = (HWND)hwndInt;
+    SetWindowText(hwnd,windowText);
 }
